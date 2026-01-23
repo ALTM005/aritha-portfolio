@@ -12,7 +12,7 @@ const personalInfo = {
   socials: {
     github: "https://github.com/ALTM005",
     linkedin: "https://linkedin.com/in/aritham",
-    resume: "/Aritha_Resume.pdf" // Ensure you put your PDF in the 'public' folder and name it resume.pdf
+    resume: "/Aritha_Resume.pdf"
   }
 };
 
@@ -166,12 +166,18 @@ export default function Portfolio() {
     });
   }, []);
 
-  // Scroll Spy Logic for Navbar
   useEffect(() => {
     const sections = ['hero', 'experience', 'projects', 'contact'];
+    
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 300; // Offset for better detection
 
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        setActiveSection('contact');
+        return;
+      }
+
+      const scrollPosition = window.scrollY + 300;
+      
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
@@ -179,6 +185,7 @@ export default function Portfolio() {
         }
       }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
