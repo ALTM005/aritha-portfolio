@@ -206,23 +206,29 @@ export default function Portfolio() {
       >
         {/* Floating Glass Navbar */}
         <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-          <nav className="bg-black/50 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl pointer-events-auto">
-            <span className="font-bold text-gray-100 text-lg tracking-tight">Aritha.</span>
-            <div className="hidden md:flex gap-6 text-sm font-medium text-gray-400">
+          <nav className="bg-black/50 backdrop-blur-md border border-white/10 rounded-full px-4 md:px-6 py-3 flex items-center gap-4 md:gap-8 shadow-2xl pointer-events-auto">
+            
+            {/* Logo: Slightly smaller on mobile */}
+            <span className="font-bold text-gray-100 text-base md:text-lg tracking-tight cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+              Aritha.
+            </span>
+
+            {/* Links: Removed 'hidden', added responsive text size and gap */}
+            <div className="flex gap-3 md:gap-6 text-xs md:text-sm font-medium text-gray-400">
               {['Experience', 'Projects', 'Contact'].map((item) => {
                 const id = item.toLowerCase();
                 const isActive = activeSection === id;
                 return (
-                  <a
-                    key={item}
-                    href={`#${id}`}
+                  <a 
+                    key={item} 
+                    href={`#${id}`} 
                     className={`transition-colors relative hover:text-white ${isActive ? 'text-white' : 'text-gray-400'}`}
                   >
                     {item}
                     {isActive && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500"
+                      <motion.span 
+                        layoutId="nav-underline" 
+                        className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500" 
                       />
                     )}
                   </a>
