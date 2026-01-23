@@ -12,7 +12,7 @@ const personalInfo = {
   socials: {
     github: "https://github.com/ALTM005",
     linkedin: "https://linkedin.com/in/aritham",
-    resume: "/resume.pdf" // Ensure you put your PDF in the 'public' folder and name it resume.pdf
+    resume: "/Aritha_Resume.pdf" // Ensure you put your PDF in the 'public' folder and name it resume.pdf
   }
 };
 
@@ -21,15 +21,26 @@ const experience = [
     company: "DRM Electronics",
     role: "Junior Software Engineer",
     date: "Dec. 2023 – Aug. 2024",
-    description: "Spearheaded backend scalability and database optimization for a high-traffic electronics retailer. Optimized PostgreSQL schemas to reduce data retrieval latency by 40% for critical reporting modules. Scaled the Node.js backend architecture to handle high concurrent traffic and modernized the Angular front-end, boosting application responsiveness by 25%.",
+    summary: "Led a full-stack performance overhaul to fix slow reporting and UI lag.",
+    bullets: [
+      "Optimized PostgreSQL databases to cut data retrieval time by 40%.",
+      "Modernized the Angular frontend, making the app 25% more responsive.",
+      "Scaled Node.js APIs to reliably handle high concurrent traffic.",
+      "Built native Android prototypes to test cross-platform feasibility."
+    ],
     tags: ["PostgreSQL", "Node.js", "Angular", "Java", "System Design"],
-    link: "#"
   },
   {
     company: "DRM Electronics",
     role: "Software Engineering Intern",
     date: "Aug. 2023 – Dec. 2023",
-    description: "Collaborated in an Agile environment to build responsive web interfaces, driving a 30% increase in user engagement metrics. Engineered reusable Angular components to standardize UI patterns and implemented robust Node.js backend services to optimize real-time data flow.",
+    summary: "Collaborated in an Agile team to build responsive web interfaces and streamline deployment.",
+    bullets: [
+      "Designed layouts that drove a 30% increase in user engagement.",
+      "Engineered reusable Angular components to speed up future development.",
+      "Implemented Node.js backend services for real-time data flow.",
+      "Ensured reliable production releases using Git and CI/CD pipelines."
+    ],
     tags: ["HTML/CSS", "JavaScript", "Node.js", "CI/CD", "Agile"]
   }
 ];
@@ -40,28 +51,28 @@ const projects = [
     date: "Jan. 2026",
     description: "A Retrieval Augmented Generation (RAG) engine allowing natural language chat with PDF documents. Built with the 'Modern Data Stack' using Astra DB for vector search. Features a hybrid search architecture for sub-millisecond retrieval and uses GPT-3.5 Turbo to synthesize hallucination-free answers.",
     tags: ["Streamlit", "LangChain", "Astra DB", "OpenAI", "Python"],
-    repoUrl: "https://github.com/ALTM005/doc-search-rag" 
+    repoUrl: "https://github.com/ALTM005/doc-search-rag"
   },
   {
     title: "Generative AI Knowledge Engine",
     date: "Dec. 2025",
     description: "Engineered an end-to-end RAG pipeline using FastAPI for context-aware semantic search over unstructured datasets. Implemented PostgreSQL with pgvector for high-dimensional embedding storage, enabling sub-second retrieval speeds for LLM grounding.",
     tags: ["Python", "FastAPI", "PostgreSQL", "RAG", "pgvector"],
-    repoUrl: "https://github.com/ALTM005"
+    repoUrl: "https://github.com/ALTM005/ai-knowledge-search"
   },
   {
     title: "AI-Powered Campus Navigator",
     date: "Oct. 2025",
     description: "Built a centralized AI search engine using FastAPI and OpenAI that scrapes live web data to locate events and resources in real-time. Designed a high-performance geospatial frontend with React and TypeScript to visualize dynamic event clusters.",
     tags: ["Python", "FastAPI", "Tavily API", "React", "TypeScript"],
-    repoUrl: "https://github.com/ALTM005"
+    repoUrl: "https://github.com/ALTM005/campus-navigator"
   },
   {
     title: "Real-Time Collab Infrastructure",
     date: "Aug. 2025",
     description: "Architected a low-latency collaboration platform using Socket.IO, achieving sub-100ms synchronization. Designed a secure, sandboxed code execution environment using Docker to prevent malicious server-side operations while supporting 20+ languages.",
     tags: ["React", "TypeScript", "WebSocket", "Docker", "Supabase"],
-    repoUrl: "https://github.com/ALTM005"
+    repoUrl: "https://github.com/ALTM005/code-collab"
   }
 ];
 
@@ -113,7 +124,7 @@ const Badge = ({ children }) => (
 );
 
 const SectionHeader = ({ title }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
@@ -125,8 +136,8 @@ const SectionHeader = ({ title }) => (
 );
 
 const SocialLink = ({ href, icon: Icon, label, download = false }) => (
-  <a 
-    href={href} 
+  <a
+    href={href}
     target={download ? "_self" : "_blank"}
     rel={download ? "" : "noreferrer"}
     download={download}
@@ -160,7 +171,7 @@ export default function Portfolio() {
     const sections = ['hero', 'experience', 'projects', 'contact'];
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 300; // Offset for better detection
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
@@ -182,7 +193,7 @@ export default function Portfolio() {
         }
       `}</style>
 
-      <motion.div 
+      <motion.div
         style={{ backgroundImage }}
         className="min-h-screen bg-gray-950 text-gray-300 font-sans selection:bg-blue-500/30 overflow-x-hidden"
       >
@@ -195,16 +206,16 @@ export default function Portfolio() {
                 const id = item.toLowerCase();
                 const isActive = activeSection === id;
                 return (
-                  <a 
-                    key={item} 
-                    href={`#${id}`} 
+                  <a
+                    key={item}
+                    href={`#${id}`}
                     className={`transition-colors relative hover:text-white ${isActive ? 'text-white' : 'text-gray-400'}`}
                   >
                     {item}
                     {isActive && (
-                      <motion.span 
-                        layoutId="nav-underline" 
-                        className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500" 
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500"
                       />
                     )}
                   </a>
@@ -215,11 +226,11 @@ export default function Portfolio() {
         </div>
 
         <main className="max-w-5xl mx-auto px-6 pt-32 pb-20 relative">
-          
+
           {/* Hero Section */}
           <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
             <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-blue-600/20 rounded-full blur-[128px] pointer-events-none" />
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -241,9 +252,9 @@ export default function Portfolio() {
               </h1>
 
               <p className="text-xl text-gray-400 max-w-2xl leading-relaxed mb-8">
-                 I build scalable full-stack systems and intelligent AI solutions. 
-                 CS Student at <span className="text-gray-100">Sacramento State</span>, specializing in 
-                 <span className="text-gray-100 font-semibold"> RAG architectures</span> and modern web infrastructure.
+                I build scalable full-stack systems and intelligent AI solutions.
+                CS Student at <span className="text-gray-100">Sacramento State</span>, specializing in
+                <span className="text-gray-100 font-semibold"> RAG architectures</span> and modern web infrastructure.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-12">
@@ -254,7 +265,7 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1 }}
@@ -288,9 +299,17 @@ export default function Portfolio() {
                         {exp.date}
                       </span>
                     </div>
-                    <p className="text-gray-400 mb-6 max-w-3xl leading-relaxed">
-                      {exp.description}
+
+                    <p className="text-gray-400 mb-4 max-w-3xl leading-relaxed">
+                      {exp.summary}
                     </p>
+
+                    <ul className="list-disc list-outside ml-4 mb-6 text-gray-400 space-y-2 text-sm">
+                      {exp.bullets.map((bullet, i) => (
+                        <li key={i} className="pl-1">{bullet}</li>
+                      ))}
+                    </ul>
+
                     <div className="flex flex-wrap gap-2">
                       {exp.tags.map(tag => <Badge key={tag}>{tag}</Badge>)}
                     </div>
@@ -312,7 +331,7 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <SpotlightCard 
+                  <SpotlightCard
                     className="h-full p-8 flex flex-col hover:border-blue-500/30 transition-colors group"
                     onClick={() => window.open(project.repoUrl, '_blank')}
                   >
@@ -341,7 +360,7 @@ export default function Portfolio() {
             </h3>
             <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
               {skills.map((skill, index) => (
-                <motion.span 
+                <motion.span
                   key={index}
                   whileHover={{ scale: 1.05 }}
                   className="px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-gray-300 text-sm font-medium hover:bg-white/10 hover:border-blue-500/30 hover:text-white transition-all cursor-default"
@@ -358,16 +377,16 @@ export default function Portfolio() {
             <p className="text-gray-400 mb-8">
               Currently looking for Summer 2026 Internships.
             </p>
-            <a 
-              href={`mailto:${personalInfo.email}`} 
+            <a
+              href={`mailto:${personalInfo.email}`}
               className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]"
             >
               Say Hello
             </a>
             <div className="mt-16 flex justify-center gap-6 text-sm font-medium text-gray-500">
-               <span>{personalInfo.location}</span>
-               <span className="text-gray-700">•</span>
-               <span>© 2026 {personalInfo.name}</span>
+              <span>{personalInfo.location}</span>
+              <span className="text-gray-700">•</span>
+              <span>© 2026 {personalInfo.name}</span>
             </div>
           </footer>
 
