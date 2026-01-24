@@ -278,11 +278,12 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1 }}
-              className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-sm"
+              // Updated class below:
+              className="mt-12 md:absolute md:bottom-10 md:left-1/2 md:-translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-sm"
             >
               <span className="text-xs uppercase tracking-widest">Scroll</span>
               <ChevronDown className="animate-bounce" size={16} />
