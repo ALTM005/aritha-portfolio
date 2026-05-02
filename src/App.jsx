@@ -388,9 +388,6 @@ export default function Portfolio() {
           {/* Footer */}
           <footer id="contact" className="mt-40 text-center border-t border-white/5 pt-12 pb-12">
             <h2 className="text-3xl font-bold text-white mb-6">Let's build something epic.</h2>
-            <p className="text-gray-400 mb-8">
-              Currently looking for Summer 2026 Internships.
-            </p>
             <a
               href={`mailto:${personalInfo.email}`}
               className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]"
