@@ -5,7 +5,7 @@ import { MapPin, Github, Linkedin, Mail, ArrowUpRight, ChevronDown, FileText, Ex
 // --- Personal Data ---
 const personalInfo = {
   name: "Aritha Munasinghe",
-  role: "Full-Stack Engineer & AI Specialist",
+  role: "Full-Stack Engineer, Cloud Infra & AI Specialist",
   education: "B.S. Computer Science • California State University, Sacramento (Exp. May 2027)",
   location: "Sacramento, CA",
   email: "arithaltm@gmail.com",
@@ -18,34 +18,40 @@ const personalInfo = {
 
 const experience = [
   {
-    company: "DRM Electronics",
-    role: "Junior Software Engineer",
-    date: "Dec. 2023 – Aug. 2024",
-    summary: "Led a full-stack performance overhaul to fix slow reporting and UI lag.",
+    company: "Sacramento Municipal Utility District (SMUD)",
+    role: "STEM Student Assistant – Enterprise Applications Engineering",
+    date: "May 2026 – Present",
+    summary: "Building monitoring, alerting, and automation tooling for enterprise Kubernetes infrastructure.",
     bullets: [
-      "Optimized PostgreSQL databases to cut data retrieval time by 40%.",
-      "Modernized the Angular frontend, making the app 25% more responsive.",
-      "Scaled Node.js APIs to reliably handle high concurrent traffic.",
-      "Built native Android prototypes to test cross-platform feasibility."
+      "Built pod-level alerting in Azure Monitor & Grafana for CPU and disk usage across non-prod AKS clusters.",
+      "Rewrote KQL alert queries to be controller-aware, scaling one rule to every workload group.",
+      "Resolved a stalled rollout by fixing a persistent-volume conflict after repeated Helm failures.",
+      "Hardened a weekly PowerShell reporting job with failure-safe email gating and log rotation."
     ],
-    tags: ["PostgreSQL", "Node.js", "Angular", "Java", "System Design"],
+    tags: ["Azure Monitor", "Grafana", "Kubernetes (AKS)", "KQL", "PowerShell", "Helm"],
   },
   {
     company: "DRM Electronics",
-    role: "Software Engineering Intern",
-    date: "Aug. 2023 – Dec. 2023",
-    summary: "Collaborated in an Agile team to build responsive web interfaces and streamline deployment.",
+    role: "Junior Software Engineer",
+    date: "Aug. 2023 – Aug. 2024",
+    summary: "Promoted from Software Engineering Intern after driving performance gains across the backend and database layer.",
     bullets: [
-      "Designed layouts that drove a 30% increase in user engagement.",
-      "Engineered reusable Angular components to speed up future development.",
-      "Implemented Node.js backend services for real-time data flow.",
-      "Ensured reliable production releases using Git and CI/CD pipelines."
+      "Optimized PostgreSQL schemas and reporting queries to cut retrieval latency for analytics modules.",
+      "Refactored legacy Node.js APIs to increase sustained concurrent request throughput.",
+      "Built native Android prototypes in Java to validate cross-platform UX feasibility."
     ],
-    tags: ["HTML/CSS", "JavaScript", "Node.js", "CI/CD", "Agile"]
+    tags: ["PostgreSQL", "Node.js", "Java", "Android", "System Design"]
   }
 ];
 
 const projects = [
+  {
+    title: "KubePrivilegeDiff",
+    date: "2026 – Present",
+    description: "Models Kubernetes RBAC as a canonical graph (Subject/Binding/Role/Rule/Scope) to compute privilege paths across namespaces and clusters, with an OPA/Rego engine holding sole authority over pass/fail verdicts. Validates AI-generated patches through a multi-stage gate: schema checks, analyzer re-run, kubectl dry-run, and ephemeral kind cluster apply.",
+    tags: ["Python", "Open Policy Agent", "Kubernetes", "NetworkX", "GitHub Actions"],
+    repoUrl: "https://github.com/ALTM005/KubePrivilegeDiff"
+  },
   {
     title: "DocSearch RAG",
     date: "Jan. 2026",
@@ -56,7 +62,7 @@ const projects = [
   {
     title: "Generative AI Knowledge Engine",
     date: "Dec. 2025",
-    description: "Engineered an end-to-end RAG pipeline using FastAPI for context-aware semantic search over unstructured datasets. Implemented PostgreSQL with pgvector for high-dimensional embedding storage, enabling sub-second retrieval speeds for LLM grounding.",
+    description: "Engineered an end-to-end RAG pipeline using FastAPI for context-aware semantic search over unstructured datasets. Implemented PostgreSQL with pgvector for high-dimensional embedding storage, enabling fast nearest-neighbor retrieval for LLM grounding.",
     tags: ["Python", "FastAPI", "PostgreSQL", "RAG", "pgvector"],
     repoUrl: "https://github.com/ALTM005/ai-knowledge-search"
   },
@@ -70,7 +76,7 @@ const projects = [
   {
     title: "Real-Time Collab Infrastructure",
     date: "Aug. 2025",
-    description: "Architected a low-latency collaboration platform using Socket.IO, achieving sub-100ms synchronization. Designed a secure, sandboxed code execution environment using Docker to prevent malicious server-side operations while supporting 20+ languages.",
+    description: "Designed a sandboxed code execution environment in Docker with resource limits and no outbound network access, supporting multiple language runtimes for concurrent users synchronized in real time over Socket.IO.",
     tags: ["React", "TypeScript", "WebSocket", "Docker", "Supabase"],
     repoUrl: "https://github.com/ALTM005/code-collab"
   }
@@ -79,7 +85,8 @@ const projects = [
 const skills = [
   "Python", "TypeScript", "React", "Next.js", "FastAPI", "Node.js",
   "PostgreSQL", "Vector DBs (Astra/pgvector)", "RAG Architectures", "LangChain",
-  "Docker", "AWS (EC2/S3/Lambda)", "CI/CD", "Linux", "System Design"
+  "Kubernetes (AKS)", "Docker", "Helm", "Azure", "Grafana", "KQL",
+  "Open Policy Agent (Rego)", "CI/CD", "Linux", "System Design"
 ];
 
 const BACKGROUND_COLORS = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
@@ -268,14 +275,14 @@ export default function Portfolio() {
               <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6">
                 Hi, I'm {personalInfo.name.split(' ')[0]}. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
-                  Full-Stack Engineer & <br /> AI Specialist.
+                  Full-Stack, Cloud Infra <br /> & AI Specialist.
                 </span>
               </h1>
 
               <p className="text-xl text-gray-400 max-w-2xl leading-relaxed mb-8">
-                I build scalable full-stack systems and intelligent AI solutions.
+                I build scalable full-stack systems, cloud infrastructure, and intelligent AI solutions.
                 CS Student at <span className="text-gray-100">Sacramento State</span>, specializing in
-                <span className="text-gray-100 font-semibold"> RAG architectures</span> and modern web infrastructure.
+                <span className="text-gray-100 font-semibold"> RAG architectures</span> and Kubernetes-based infrastructure.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-12">
