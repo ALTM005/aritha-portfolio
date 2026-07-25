@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useMotionTemplate, useMotionValue, animate } from 'framer-motion';
 import { MapPin, Github, Linkedin, Mail, ArrowUpRight, ChevronDown, FileText, ExternalLink } from 'lucide-react';
 
@@ -82,11 +82,14 @@ const skills = [
   "Docker", "AWS (EC2/S3/Lambda)", "CI/CD", "Linux", "System Design"
 ];
 
+const BACKGROUND_COLORS = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
+
 // --- Components ---
 
-function SpotlightCard({ children, className = "", onClick }) {
+function SpotlightCard({ children, className = "", href }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const Tag = href ? motion.a : motion.div;
 
   function handleMouseMove({ currentTarget, clientX, clientY }) {
     const { left, top } = currentTarget.getBoundingClientRect();
@@ -95,9 +98,9 @@ function SpotlightCard({ children, className = "", onClick }) {
   }
 
   return (
-    <div
-      onClick={onClick}
-      className={`group relative border border-white/10 bg-gray-900/50 overflow-hidden rounded-xl ${className} ${onClick ? 'cursor-pointer' : ''}`}
+    <Tag
+      {...(href ? { href, target: "_blank", rel: "noopener noreferrer" } : {})}
+      className={`group relative border border-white/10 bg-gray-900/50 overflow-hidden rounded-xl ${className} ${href ? 'cursor-pointer' : ''}`}
       onMouseMove={handleMouseMove}
     >
       <motion.div
@@ -113,7 +116,7 @@ function SpotlightCard({ children, className = "", onClick }) {
         }}
       />
       <div className="relative h-full">{children}</div>
-    </div>
+    </Tag>
   );
 }
 
@@ -151,39 +154,44 @@ const SocialLink = ({ href, icon: Icon, label, download = false }) => (
 // --- Main Application ---
 
 export default function Portfolio() {
-  const COLORS = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
-  const color = useMotionValue(COLORS[0]);
+  const color = useMotionValue(BACKGROUND_COLORS[0]);
   const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #020617 50%, ${color})`;
   const [activeSection, setActiveSection] = useState('hero');
 
   // Animation for background gradient
   useEffect(() => {
-    animate(color, COLORS, {
+    animate(color, BACKGROUND_COLORS, {
       ease: "easeInOut",
       duration: 10,
       repeat: Infinity,
       repeatType: "mirror",
     });
-  }, []);
+  }, [color]);
 
   useEffect(() => {
     const sections = ['hero', 'experience', 'projects', 'contact'];
-    
-    const handleScroll = () => {
 
+    const handleScroll = () => {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         setActiveSection('contact');
         return;
       }
 
       const scrollPosition = window.scrollY + 300;
-      
+
+      // Pick the last section whose top has been scrolled past, rather than
+      // requiring the position to fall strictly within a section's bounds.
+      // Gaps between sections (e.g. the skills marquee has no id) or fast
+      // scroll events that skip a section's range would otherwise leave
+      // activeSection stuck on a stale value.
+      let current = sections[0];
       for (const section of sections) {
         const element = document.getElementById(section);
-        if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
-          setActiveSection(section);
+        if (element && element.offsetTop <= scrollPosition) {
+          current = section;
         }
       }
+      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -347,7 +355,7 @@ export default function Portfolio() {
                 >
                   <SpotlightCard
                     className="h-full p-8 flex flex-col hover:border-blue-500/30 transition-colors group"
-                    onClick={() => window.open(project.repoUrl, '_blank')}
+                    href={project.repoUrl}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-2xl font-bold text-gray-100 group-hover:text-blue-400 transition-colors">
