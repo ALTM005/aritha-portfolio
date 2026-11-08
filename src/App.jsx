@@ -33,7 +33,7 @@ const experience = [
   {
     company: "DRM Electronics",
     role: "Junior Software Engineer",
-    date: "Aug. 2023 – Aug. 2024",
+    date: "Aug. 2023 – Jul. 2024",
     summary: "Promoted from Software Engineering Intern after driving performance gains across the backend and database layer.",
     bullets: [
       "Optimized PostgreSQL schemas and reporting queries to cut retrieval latency for analytics modules.",
