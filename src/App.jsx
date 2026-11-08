@@ -12,7 +12,7 @@ const personalInfo = {
   socials: {
     github: "https://github.com/ALTM005",
     linkedin: "https://linkedin.com/in/aritham",
-    resume: "/Aritha_Resume.pdf"
+    resume: "/ArithaMunasinghe_Resume.pdf"
   }
 };
 
